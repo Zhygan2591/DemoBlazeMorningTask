@@ -3,20 +3,21 @@
 describe('Demoblazemorning', () => {
   const randomNumber = Math.floor(Math.random() * 1000) + 1;
   const username = `Anton${randomNumber}`;
+  const password = 'Qwerty123@';
   beforeEach(() => cy.visit('https://www.demoblaze.com/'));
 
   it('Should register with valid creds', () => {
     cy.get('#signin2').click();
     cy.get('#sign-username').type(username);
-    cy.get('#sign-password').type('Qwerty123@');
+    cy.get('#sign-password').type(password);
     cy.get('[onclick="register()"]').click();
-    cy.contains('#signInModal', 'Your registration is succesful')
+    cy.contains('#signInModal', 'Your registration is successful')
       .should('be.visible');
   });
   it('Should login with valid username', () => {
     cy.get('#login2').click();
     cy.get('#loginusername').type(username);
-    cy.get('#loginpassword').type('Qwerty123@');
+    cy.get('#loginpassword').type(password);
     cy.get('[onclick="logIn()"]').click();
     cy.contains('#nameofuser', username)
       .should('be.visible');
